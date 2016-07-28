@@ -1,0 +1,65 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/menu_width"
+    android:layout_height="match_parent"
+    android:background="@color/slidemenu_bg_color"
+    tools:context="com.github.adalpari.slidedrawer.SlideFragment">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        >
+        <ImageView
+            android:id="@+id/header_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/avatar"
+            android:scaleType="centerCrop"
+            />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/avatar_bg_color"
+            ></FrameLayout>
+
+        <com.github.adalpari.slidedrawer.CircularImageView
+            android:id="@+id/avatar"
+            android:layout_width="@dimen/circular_image_size"
+            android:layout_height="@dimen/circular_image_size"
+            android:layout_centerInParent="true"
+            android:src="@drawable/avatar"
+            />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_margin="@dimen/username_margin"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/avatar"
+            android:textColor="@color/light_text_color"
+            android:textSize="@dimen/small_text_size"
+            android:text="@string/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:layout_margin="@dimen/general_margin"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/primary_text_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/big_text_size"
+            android:layout_centerInParent="true"
+            android:text="@string/made"
+            />
+    </RelativeLayout>
+</FrameLayout>

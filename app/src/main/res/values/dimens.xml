@@ -1,0 +1,15 @@
+<resources>
+    <!-- Margins -->
+    <dimen name="general_margin">20dp</dimen>
+    <dimen name="username_margin">10dp</dimen>
+
+    <!-- sizes -->
+    <dimen name="menu_width">260dp</dimen>
+    <dimen name="header_height">200dp</dimen>
+    <dimen name="circular_image_size">96dp</dimen>
+
+    <!-- Text -->
+    <dimen name="big_text_size">25sp</dimen>
+    <dimen name="medium_text_size">20sp</dimen>
+    <dimen name="small_text_size">10dp</dimen>
+</resources>
