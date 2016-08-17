@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActionBarDrawerToggle actionBarDrawerToggle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        ActionBarDrawerToggle actionBarDrawerToggle;
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         actionBarDrawerToggle =
                 new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name,

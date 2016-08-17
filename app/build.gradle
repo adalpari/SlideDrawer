@@ -1,4 +1,8 @@
 apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+apply plugin: 'checkstyle'
+apply plugin: 'pmd'
+apply plugin: 'findbugs'
 
 android {
     compileSdkVersion 23
@@ -25,3 +29,60 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:support-v4:23.4.0'
 }
+
+task checkstyle(type: Checkstyle) {
+    configFile file('../config/checkstyle.xml')
+    source 'src/main/java'
+    include '**/*.java'
+    exclude '**/gen/**'
+
+    classpath = files()
+}
+
+task pmd(type: Pmd) {
+    ignoreFailures = false
+    ruleSetFiles = files("${project.rootDir}/config/pmd-ruleset.xml")
+    ruleSets = []
+
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+
+    reports {
+        xml.enabled = false
+        html.enabled = true
+        xml {
+            destination "$project.buildDir/reports/pmd/pmd.xml"
+        }
+        html {
+            destination "$project.buildDir/reports/pmd/pmd.html"
+        }
+    }
+}
+
+task findbugs(type: FindBugs) {
+    ignoreFailures = false
+    effort = "max"
+    excludeFilter = new File("${project.rootDir}/config/findbugs-excludes.xml")
+    classes = files("${project.rootDir}/app/build/intermediates/classes")
+
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+
+    reports {
+        xml.enabled = false
+        html.enabled = true
+        xml {
+            destination "$project.buildDir/reports/findbugs/findbugs.xml"
+        }
+        html {
+            destination "$project.buildDir/reports/findbugs/findbugs.html"
+        }
+    }
+
+    classpath = files()
+}
+
+// Run checkstyle task on every build
+check.dependsOn 'checkstyle', 'findbugs', 'pmd'

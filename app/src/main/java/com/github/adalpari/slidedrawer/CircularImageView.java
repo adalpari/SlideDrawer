@@ -50,8 +50,9 @@ public class CircularImageView extends ImageView {
     }
 
     public void setBorderColor(int borderColor) {
-        if (paintBorder != null)
+        if (paintBorder != null) {
             paintBorder.setColor(borderColor);
+        }
 
         this.invalidate();
     }
@@ -59,8 +60,9 @@ public class CircularImageView extends ImageView {
     private void loadBitmap() {
         BitmapDrawable bitmapDrawable = (BitmapDrawable) this.getDrawable();
 
-        if (bitmapDrawable != null)
+        if (bitmapDrawable != null) {
             image = bitmapDrawable.getBitmap();
+        }
     }
 
     @SuppressLint("DrawAllocation")
@@ -71,15 +73,16 @@ public class CircularImageView extends ImageView {
 
         // init shader
         if (image != null) {
-            shader = new BitmapShader(Bitmap.createScaledBitmap(image, canvas.getWidth(), canvas.getHeight(), false), Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+            shader = new BitmapShader(Bitmap.createScaledBitmap(
+                    image, canvas.getWidth(), canvas.getHeight(), false), Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
             paint.setShader(shader);
             int circleCenter = viewWidth / 2;
 
             // circleCenter is the x or y of the view's center
             // radius is the radius in pixels of the cirle to be drawn
             // paint contains the shader that will texture the shape
-            canvas.drawCircle(circleCenter + borderWidth, circleCenter + borderWidth, circleCenter + borderWidth - 4.0f, paintBorder);
-            canvas.drawCircle(circleCenter + borderWidth, circleCenter + borderWidth, circleCenter - 4.0f, paint);
+            canvas.drawCircle(circleCenter, circleCenter, circleCenter + borderWidth - 4.0f, paintBorder);
+            canvas.drawCircle(circleCenter, circleCenter, circleCenter - 4.0f, paint);
         }
     }
 
